@@ -14,6 +14,11 @@ const carserviceSchema = mongoose.Schema({
   }],
   phone: String,
   email: String,
+  address: {
+    city: String,
+    street: String,
+    number: String,
+  }
 });
 
 const Carservice = mongoose.model('Carservice', carserviceSchema)
