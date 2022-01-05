@@ -16,6 +16,7 @@ module.exports.carservicesController = {
         city,
         street,
         number,
+        text,
       } = req.body;
 
       const hash = await bcrypt.hash(
@@ -27,6 +28,7 @@ module.exports.carservicesController = {
         login: login,
         password: hash,
         img: img,
+        text: text,
         name: name,
         service: service,
         phone: phone,
@@ -91,12 +93,17 @@ module.exports.carservicesController = {
           login: req.body.login,
           password: req.body.password,
           img: req.body.img,
+          text: req.body.text,
           name: req.body.name,
           $push: {
             service: req.body.service,
           },
           phone: req.body.service,
           email: req.body.email,
+          address: { 
+            city: req.body.city, 
+            street: req.body.street, 
+            number: req.body.number },
         },
         { new: true }
       );
