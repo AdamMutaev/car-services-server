@@ -6,6 +6,7 @@ module.exports.servicesController = {
 
       const service = await Service.create({
         name: req.body.name,
+        price: req.body.price,
       });
 
       res.json(service);
@@ -30,6 +31,7 @@ module.exports.servicesController = {
     try {
       const service = await Service.findByIdAndUpdate(req.params.id, {
         name: req.body.name,
+        price: req.body.price,
       });
 
       res.json(service);
