@@ -5,7 +5,18 @@ const jwt = require("jsonwebtoken");
 module.exports.carservicesController = {
   registerCarservice: async (req, res) => {
     try {
-      const { login, password, img, name, service, phone, email } = req.body;
+      const {
+        login,
+        password,
+        img,
+        name,
+        service,
+        phone,
+        email,
+        city,
+        street,
+        number,
+      } = req.body;
 
       const hash = await bcrypt.hash(
         password,
@@ -20,6 +31,7 @@ module.exports.carservicesController = {
         service: service,
         phone: phone,
         email: email,
+        address: { city: city, street: street, number: number },
       });
 
       res.json(carservice);
@@ -34,10 +46,14 @@ module.exports.carservicesController = {
 
       const condidate = await Carservice.findOne({ login });
 
+      if (!condidate) {
+        return res.status(401).json("Неверный логин или пароль!");
+      }
+
       const valid = await bcrypt.compare(password, condidate.password);
 
-      if (!condidate || !valid) {
-        res.status(401).json("Неверный логин или пароль!");
+      if (!valid) {
+        return res.status(401).json("Неверный логин или пароль!");
       }
 
       const payload = {
@@ -48,9 +64,13 @@ module.exports.carservicesController = {
         expiresIn: "48h",
       });
 
-      res.json(token);
+      res.json({
+        token: token,
+      });
     } catch (e) {
-      res.json(e);
+      res.json({
+        error: e.status(401).json(e.toString()),
+      });
     }
   },
 
