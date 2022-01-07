@@ -4,6 +4,7 @@ const uuid = require("uuid");
 const fs = require("fs");
 const path = require('path')
 const jwt = require("jsonwebtoken");
+const { text } = require("express");
 
 module.exports.carservicesController = {
   registerCarservice: async (req, res) => {
@@ -13,6 +14,7 @@ module.exports.carservicesController = {
         password,
         img,
         name,
+        text,
         service,
         phone,
         email,
@@ -31,6 +33,7 @@ module.exports.carservicesController = {
         password: hash,
         img: img,
         name: name,
+        text: text,
         service: service,
         phone: phone,
         email: email,
@@ -45,6 +48,7 @@ module.exports.carservicesController = {
 
   loginCarservice: async (req, res) => {
     try {
+      
       const { login, password } = req.body;
 
       const condidate = await Carservice.findOne({ login });
@@ -95,6 +99,7 @@ module.exports.carservicesController = {
           password: req.body.password,
           img: req.body.img,
           name: req.body.name,
+          text: req.body.text,
           $push: {
             service: req.body.service,
           },
@@ -135,7 +140,7 @@ module.exports.carservicesController = {
     try {
 
       const file = req.files.file;
-      const carservice = await Carservice.findById(req.user.id);
+      const carservice = await Carservice.findById(req.carsevice.id);
       const avatarName = uuid.v4() + ".jpg";
 
       file.mv(`./static/${avatarName}`);
