@@ -1,5 +1,8 @@
 const Carservice = require("../models/Carservice.model");
 const bcrypt = require("bcrypt");
+const uuid = require("uuid");
+const fs = require("fs");
+const path = require('path')
 const jwt = require("jsonwebtoken");
 
 module.exports.carservicesController = {
@@ -16,7 +19,6 @@ module.exports.carservicesController = {
         city,
         street,
         number,
-        text,
       } = req.body;
 
       const hash = await bcrypt.hash(
@@ -28,7 +30,6 @@ module.exports.carservicesController = {
         login: login,
         password: hash,
         img: img,
-        text: text,
         name: name,
         service: service,
         phone: phone,
@@ -93,22 +94,57 @@ module.exports.carservicesController = {
           login: req.body.login,
           password: req.body.password,
           img: req.body.img,
-          text: req.body.text,
           name: req.body.name,
           $push: {
             service: req.body.service,
           },
           phone: req.body.service,
           email: req.body.email,
-          address: { 
-            city: req.body.city, 
-            street: req.body.street, 
-            number: req.body.number },
         },
         { new: true }
       );
 
       res.json(carservice);
+    } catch (e) {
+      res.json(e);
+    }
+  },
+
+  addImageForCarservice: async (req, res) => {
+    try {
+      const fileName = `/static/${uuidv4()}${path.extname(
+        req.files.image.name
+      )}`;
+
+      await req.files.image.mv(`./static${fileName}`, async (err) => {
+        if (err) {
+          console.log(err);
+        } else {
+          await Carservice.findByIdAndUpdate(req.params.id, {
+            img: fileName,
+          });
+          res.json("Файл загружен");
+        }
+      });
+    } catch (e) {
+      res.json(e);
+    }
+  },
+
+  addAvatar: async (req, res) => {
+    try {
+
+      const file = req.files.file;
+      const carservice = await Carservice.findById(req.user.id);
+      const avatarName = uuid.v4() + ".jpg";
+
+      file.mv(`./static/${avatarName}`);
+      carservice.img = avatarName;
+
+      await carservice.save();
+
+      res.json(avatarName);
+      
     } catch (e) {
       res.json(e);
     }
