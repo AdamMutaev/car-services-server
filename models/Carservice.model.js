@@ -7,7 +7,10 @@ const carserviceSchema = mongoose.Schema({
   },
   text: String,
   password: String,
-  img: String,
+  img: {
+    type: String,
+    default: null,
+  },
   name: String,
   service: [
     {
@@ -15,12 +18,15 @@ const carserviceSchema = mongoose.Schema({
       ref: "Service",
     },
   ],
-  phone: String,
-  email: String,
+  phone: Number,
+  email: {
+    type: String,
+    unique: true,
+  },
   address: {
     city: String,
     street: String,
-    number: String,
+    number: Number,
   },
 });
 
