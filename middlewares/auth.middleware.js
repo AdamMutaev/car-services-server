@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 
-module.exports = (req, res, next) => {
+module.exports = async(req, res, next) => {
   const { authorization } = req.headers;
 
   if (!authorization) {
@@ -14,7 +14,7 @@ module.exports = (req, res, next) => {
   }
 
   try {
-    req.carservice = jwt.verify(token, process.env.SECRET_JWT_KEY);
+     req.carservice = await jwt.verify(token, process.env.SECRET_JWT_KEY);
 
     next();
   } catch (e) {

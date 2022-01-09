@@ -4,7 +4,6 @@ const uuid = require("uuid");
 const fs = require("fs");
 const path = require('path')
 const jwt = require("jsonwebtoken");
-const { text } = require("express");
 
 module.exports.carservicesController = {
   registerCarservice: async (req, res) => {
@@ -41,8 +40,8 @@ module.exports.carservicesController = {
       });
 
       res.json(carservice);
-    } catch (e) {
-      res.json(e);
+    } catch (error) {
+      res.json(error);
     }
   },
 
@@ -54,13 +53,13 @@ module.exports.carservicesController = {
       const condidate = await Carservice.findOne({ login });
 
       if (!condidate) {
-        return res.status(401).json("Неверный логин или пароль!");
+        return res.status(401).json({error: "Неверный логин или пароль!"});
       }
 
       const valid = await bcrypt.compare(password, condidate.password);
 
       if (!valid) {
-        return res.status(401).json("Неверный логин или пароль!");
+        return res.status(401).json({error: "Неверный логин или пароль!"});
       }
 
       const payload = {
@@ -68,15 +67,15 @@ module.exports.carservicesController = {
       };
 
       const token = await jwt.sign(payload, process.env.SECRET_JWT_KEY, {
-        expiresIn: "48h",
+        expiresIn: "14d",
       });
 
       res.json({
         token: token,
       });
-    } catch (e) {
+    } catch (error) {
       res.json({
-        error: e.status(401).json(e.toString()),
+        error: error.status(401).json(error.toString()),
       });
     }
   },
@@ -85,8 +84,8 @@ module.exports.carservicesController = {
     try {
       const carservices = await Carservice.find();
       res.json(carservices);
-    } catch (e) {
-      res.json(e);
+    } catch (error) {
+      res.json(error);
     }
   },
 
@@ -97,7 +96,7 @@ module.exports.carservicesController = {
         {
           login: req.body.login,
           password: req.body.password,
-          img: req.body.img,
+          img: req.file.path,
           name: req.body.name,
           text: req.body.text,
           $push: {
@@ -110,48 +109,19 @@ module.exports.carservicesController = {
       );
 
       res.json(carservice);
-    } catch (e) {
-      res.json(e);
+    } catch (error) {
+      res.json(error);
     }
   },
 
-  addImageForCarservice: async (req, res) => {
+  updateImg: async (req, res) => {
     try {
-      const fileName = `/static/${uuidv4()}${path.extname(
-        req.files.image.name
-      )}`;
-
-      await req.files.image.mv(`./static${fileName}`, async (err) => {
-        if (err) {
-          console.log(err);
-        } else {
-          await Carservice.findByIdAndUpdate(req.params.id, {
-            img: fileName,
-          });
-          res.json("Файл загружен");
-        }
+      await Carservice.findByIdAndUpdate(req.params.id, {
+        img: req.file.path
       });
-    } catch (e) {
-      res.json(e);
-    }
-  },
-
-  addAvatar: async (req, res) => {
-    try {
-
-      const file = req.files.file;
-      const carservice = await Carservice.findById(req.carsevice.id);
-      const avatarName = uuid.v4() + ".jpg";
-
-      file.mv(`./static/${avatarName}`);
-      carservice.img = avatarName;
-
-      await carservice.save();
-
-      res.json(avatarName);
-      
-    } catch (e) {
-      res.json(e);
+      res.status(200).json('update');
+    } catch (error) {
+      res.json(error);
     }
   },
 
@@ -168,8 +138,8 @@ module.exports.carservicesController = {
       );
 
       res.json(carservice);
-    } catch (e) {
-      res.json(e);
+    } catch (error) {
+      res.json(error);
     }
   },
 
@@ -177,8 +147,8 @@ module.exports.carservicesController = {
     try {
       await Carservice.findByIdAndDelete(req.params.id);
       res.json("Автосервис успешно удален!");
-    } catch (e) {
-      res.json(e);
+    } catch (error) {
+      res.json(error);
     }
   },
 };
