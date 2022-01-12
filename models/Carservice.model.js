@@ -1,16 +1,12 @@
 const mongoose = require("mongoose");
 
 const carserviceSchema = mongoose.Schema({
-  login: {
+  email: {
     type: String,
     unique: true,
   },
   text: String,
   password: String,
-  img: {
-    type: String,
-    default: null,
-  },
   name: String,
   service: [
     {
@@ -19,10 +15,6 @@ const carserviceSchema = mongoose.Schema({
     },
   ],
   phone: Number,
-  email: {
-    type: String,
-    unique: true,
-  },
   address: {
     city: String,
     street: String,
