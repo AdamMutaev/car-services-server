@@ -8,7 +8,7 @@ const router = Router();
 router.get('/carservice', carservicesController.getAllCarservices)
 router.post('/carservice/login', carservicesController.loginCarservice)
 router.post('/carservice/register', carservicesController.registerCarservice)
-router.patch('/carservice/:id/avatar', authMiddleware, fileMiddleware.single('img'), carservicesController.updateImg);
+router.patch('/carservice/avatar/:id', authMiddleware, fileMiddleware.single('img'), carservicesController.updateImg);
 router.patch('/carservice/:id', authMiddleware, carservicesController.updateCarservice)
 router.patch('/carservice/add/services/:id', authMiddleware, carservicesController.pushServices)
 router.delete('/carservice/:id', authMiddleware, carservicesController.deleteCarservice)
