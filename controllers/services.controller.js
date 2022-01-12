@@ -3,7 +3,6 @@ const Service = require("../models/Service.model");
 module.exports.servicesController = {
   createService: async (req, res) => {
     try {
-
       const service = await Service.create({
         name: req.body.name,
         price: req.body.price,
@@ -43,8 +42,8 @@ module.exports.servicesController = {
 
   deleteService: async (req, res) => {
     try {
-      await Service.findByIdAndRemove(req.params.id)
-      res.json('Услуга успешно удалена')
+      const service = await Service.findByIdAndRemove(req.params.id)
+      res.json(service)
     } catch (e) {
       res.json(e)
     }
