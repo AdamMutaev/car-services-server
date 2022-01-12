@@ -9,6 +9,7 @@ module.exports.carservicesController = {
         email,
         password,
         name,
+        img,
         text,
         service,
         phone,
@@ -26,6 +27,7 @@ module.exports.carservicesController = {
         email: email,
         password: hash,
         name: name,
+        img: img,
         text: text,
         service: service,
         phone: phone,
@@ -91,6 +93,7 @@ module.exports.carservicesController = {
           password: req.body.password,
           name: req.body.name,
           text: req.body.text,
+          img: req.body.img,
           $push: {
             service: req.body.service,
           },

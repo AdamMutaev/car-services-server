@@ -7,6 +7,10 @@ const carserviceSchema = mongoose.Schema({
   },
   text: String,
   password: String,
+  img: {
+    type: String,
+    default: null,
+  },
   name: String,
   service: [
     {
