@@ -1,22 +1,18 @@
 const Carservice = require("../models/Carservice.model");
 const bcrypt = require("bcrypt");
-const uuid = require("uuid");
-const fs = require("fs");
-const path = require('path')
 const jwt = require("jsonwebtoken");
 
 module.exports.carservicesController = {
   registerCarservice: async (req, res) => {
     try {
       const {
-        login,
+        email,
         password,
         img,
         name,
         text,
         service,
         phone,
-        email,
         city,
         street,
         number,
@@ -28,14 +24,13 @@ module.exports.carservicesController = {
       );
 
       const carservice = await Carservice.create({
-        login: login,
+        email: email,
         password: hash,
         img: img,
         name: name,
         text: text,
         service: service,
         phone: phone,
-        email: email,
         address: { city: city, street: street, number: number },
       });
 
@@ -48,9 +43,9 @@ module.exports.carservicesController = {
   loginCarservice: async (req, res) => {
     try {
       
-      const { login, password } = req.body;
+      const { email, password } = req.body;
 
-      const condidate = await Carservice.findOne({ login });
+      const condidate = await Carservice.findOne({ email });
 
       if (!condidate) {
         return res.status(401).json({error: "Неверный логин или пароль!"});
@@ -92,12 +87,10 @@ module.exports.carservicesController = {
 
   updateCarservice: async (req, res) => {
     try {
-      const carservice = await Carservice.findByIdAndUpdate(
+      let carservice = await Carservice.findByIdAndUpdate(
         req.params.id,
         {
-          login: req.body.login,
           password: req.body.password,
-          img: req.file.path,
           name: req.body.name,
           text: req.body.text,
           $push: {
