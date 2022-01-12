@@ -8,7 +8,6 @@ module.exports.carservicesController = {
       const {
         email,
         password,
-        img,
         name,
         text,
         service,
@@ -26,7 +25,6 @@ module.exports.carservicesController = {
       const carservice = await Carservice.create({
         email: email,
         password: hash,
-        img: img,
         name: name,
         text: text,
         service: service,
