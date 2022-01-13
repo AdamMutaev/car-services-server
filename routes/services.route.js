@@ -1,12 +1,16 @@
 const { Router } = require("express");
-const { servicesController } = require("../controllers/services.controller");
+const { carservicesController } = require("../controllers/carservices.controller");
 const authMiddleware = require("../middlewares/auth.middleware");
+const fileMiddleware = require('../middlewares/loadingFile.middleware')
 
 const router = Router();
 
-router.get('/services', servicesController.getAllServices)
-router.post('/services', servicesController.createService)
-router.patch('/services/:id', servicesController.updateService)
-router.delete('/services/:id', servicesController.deleteService)
+router.get('/carservice', carservicesController.getAllCarservices)
+router.post('/carservice/login', carservicesController.loginCarservice)
+router.post('/carservice/register', carservicesController.registerCarservice)
+router.patch('/carservice/:id/avatar', authMiddleware, fileMiddleware.single('img'), carservicesController.updateImg);
+router.patch('/carservice/:id', authMiddleware, carservicesController.updateCarservice)
+router.patch('/carservice/add/services/:id', carservicesController.pushServices)
+router.delete('/carservice/:id', authMiddleware, carservicesController.deleteCarservice)
 
 module.exports = router
