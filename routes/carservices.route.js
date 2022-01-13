@@ -11,6 +11,7 @@ router.post('/carservice/register', carservicesController.registerCarservice)
 router.patch('/carservice/:id/avatar', authMiddleware, fileMiddleware.single('img'), carservicesController.updateImg);
 router.patch('/carservice/:id', authMiddleware, carservicesController.updateCarservice)
 router.patch('/carservice/add/services/:id', carservicesController.pushServices)
+router.patch('/carservice/delete/one/service/:id', carservicesController.deleteServices)
 router.delete('/carservice/:id', authMiddleware, carservicesController.deleteCarservice)
 
 module.exports = router
