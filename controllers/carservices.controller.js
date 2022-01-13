@@ -110,12 +110,12 @@ module.exports.carservicesController = {
 
   updateImg: async (req, res) => {
     try {
-      const carService = await Carservice.findByIdAndUpdate(req.params.id, {
+      await Carservice.findByIdAndUpdate(req.params.id, {
         img: req.file.path,
       });
-      const carService2 = await Carservice.findById(req.params.id);
+      const carService = await Carservice.findById(req.params.id);
 
-      res.status(200).json(carService2);
+      res.status(200).json(carService);
     } catch (error) {
       res.json(error);
     }
@@ -123,16 +123,32 @@ module.exports.carservicesController = {
 
   pushServices: async (req, res) => {
     try {
-      
       const carservice = await Carservice.findByIdAndUpdate(
         req.params.id,
         {
           $push: {
             service: req.body,
           },
-        }
+        },
+        { new: true }
       );
-      
+
+      res.json(carservice);
+    } catch (error) {
+      res.json(error);
+    }
+  },
+
+  deleteServices: async (req, res) => {
+    try {
+      await Carservice.findByIdAndUpdate(req.params.id, {
+        $pull: {
+          service: req.body,
+        },
+      });
+
+      const carservice = await Carservice.findById(req.params.id);
+
       res.json(carservice);
     } catch (error) {
       res.json(error);
