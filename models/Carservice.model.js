@@ -14,8 +14,8 @@ const carserviceSchema = mongoose.Schema({
   name: String,
   service: [
     {
-      type: mongoose.SchemaTypes.ObjectId,
-      ref: "Service",
+      name: String,
+      price: Number,
     },
   ],
   phone: Number,

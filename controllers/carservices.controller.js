@@ -42,19 +42,18 @@ module.exports.carservicesController = {
 
   loginCarservice: async (req, res) => {
     try {
-      
       const { email, password } = req.body;
 
       const condidate = await Carservice.findOne({ email });
 
       if (!condidate) {
-        return res.status(401).json({error: "Неверный логин или пароль!"});
+        return res.status(401).json({ error: "Неверный логин или пароль!" });
       }
 
       const valid = await bcrypt.compare(password, condidate.password);
 
       if (!valid) {
-        return res.status(401).json({error: "Неверный логин или пароль!"});
+        return res.status(401).json({ error: "Неверный логин или пароль!" });
       }
 
       const payload = {
@@ -111,10 +110,12 @@ module.exports.carservicesController = {
 
   updateImg: async (req, res) => {
     try {
-      await Carservice.findByIdAndUpdate(req.params.id, {
-        img: req.file.path
+      const carService = await Carservice.findByIdAndUpdate(req.params.id, {
+        img: req.file.path,
       });
-      res.status(200).json('update');
+      const carService2 = await Carservice.findById(req.params.id);
+
+      res.status(200).json(carService2);
     } catch (error) {
       res.json(error);
     }
@@ -126,12 +127,11 @@ module.exports.carservicesController = {
         req.params.id,
         {
           $push: {
-            service: req.body.service,
+            service: req.body,
           },
-        },
-        { new: true }
+        }
       );
-
+      
       res.json(carservice);
     } catch (error) {
       res.json(error);
