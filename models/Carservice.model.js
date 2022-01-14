@@ -23,6 +23,10 @@ const carserviceSchema = mongoose.Schema({
     city: String,
     street: String,
     number: Number,
+    coordinate: {
+      lat: Number,
+      long: Number,
+    }
   },
 });
 

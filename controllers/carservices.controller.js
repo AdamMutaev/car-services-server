@@ -86,18 +86,43 @@ module.exports.carservicesController = {
 
   updateCarservice: async (req, res) => {
     try {
+      const {
+        email,
+        password,
+        name,
+        img,
+        text,
+        service,
+        phone,
+        city,
+        street,
+        number,
+      } = req.body;
+
+      const hash = await bcrypt.hash(
+        password,
+        Number(process.env.BCRYPT_ROUNDS)
+      );
+
       let carservice = await Carservice.findByIdAndUpdate(
         req.params.id,
         {
-          password: req.body.password,
-          name: req.body.name,
-          text: req.body.text,
-          img: req.body.img,
-          $push: {
-            service: req.body.service,
+          email: email,
+          password: hash,
+          name: name,
+          img: img,
+          text: text,
+          service: service,
+          phone: phone,
+          address: {
+            city: city,
+            street: street,
+            number: number,
+            coordinate: {
+              lat: req.body.lat,
+              long: req.body.long,
+            },
           },
-          phone: req.body.service,
-          email: req.body.email,
         },
         { new: true }
       );
