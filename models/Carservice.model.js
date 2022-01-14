@@ -24,8 +24,14 @@ const carserviceSchema = mongoose.Schema({
     street: String,
     number: Number,
     coordinate: {
-      lat: Number,
-      long: Number,
+      lat: {
+        type: Number,
+        default: 43.318369, 
+      },
+      long: {
+        type: Number,
+        default: 45.692419,
+      }
     }
   },
 });
