@@ -1,0 +1,57 @@
+.contacts__body {
+  margin: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-image: url(https://images.hdqwalls.com/download/2019-4k-dodge-challenger-srt-hellcat-c1-1920x1080.jpg);
+  background-size: cover;
+}
+
+.contacts__container {
+  width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  border-radius: 10px;
+  text-align: center;
+  color: aliceblue;
+  background-color: #303030e0;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.contacts__title {
+  font-size: 40px;
+}
+
+.contacts__text {
+  background-color: rgb(39, 39, 39);
+  border-radius: 6px;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.contacts__text li{
+  line-height: 22px;
+}
+
+.contacts__button {
+  font-weight: 700;
+  font-size: 20px;
+  padding: 16px;
+  border: 3px ivory solid;
+  border-radius: 5px;
+  background-color: inherit;
+}
+
+.contacts__button a {
+  padding: 10px;
+}
+
+.contacts__footer {
+  margin-top: 20px;
+}
+
+.contacts__toHome {
+  color: #ffffff;
+}

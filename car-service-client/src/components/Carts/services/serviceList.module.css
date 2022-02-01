@@ -1,0 +1,32 @@
+.service__body {
+  margin: 0 auto;
+}
+
+.service__container {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #101010;
+}
+
+.service__main {
+  padding: 20px;
+  font-size: 20px;
+  text-transform: uppercase;
+  width: 90%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  background-color: #ffffffbd;
+}
+
+.div_delete {
+  width: 15%;
+  display: flex;
+  justify-content: space-between;
+}

@@ -1,0 +1,9 @@
+.footer__title {
+    text-align: center;
+    color: whitesmoke;
+}
+.bgFooter {
+    width: 100%;
+    height: 10px;
+    background: inherit;
+}
