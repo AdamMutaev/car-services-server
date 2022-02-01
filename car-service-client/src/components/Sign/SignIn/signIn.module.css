@@ -1,0 +1,100 @@
+.container {
+    background: #9053c7;
+    background: -webkit-linear-gradient(-135deg, #c850c0, #4158d0);
+    background: -o-linear-gradient(-135deg, #c850c0, #4158d0);
+    background: -moz-linear-gradient(-135deg, #c850c0, #4158d0);
+    background: linear-gradient(-135deg, #c850c0, #4158d0);
+    padding: 50px;
+}
+
+.form {
+    display: flex;
+    justify-content: space-between;
+    width: 960px;
+    background: #fff;
+    border-radius: 10px;
+    margin: auto;
+    color: rgb(82, 75, 75);
+    padding: 177px 130px 33px 95px;
+}
+
+.image {
+    width: 316px;
+    height: 468px;
+}
+
+.block {
+    text-align: center;
+}
+
+.form h2 {
+    font-weight: 900;
+}
+
+.form input {
+    margin: 10px 30px;
+    font-weight: 700;
+
+}
+
+.form a {
+    text-decoration: none;
+    color: #000000;
+    margin-left: 5px;
+}
+
+.form a:hover {
+    color: rgb(139, 95, 95);
+}
+
+.homeButton {
+    margin-top: 10px;
+}
+
+.btn {
+    color: #fff;
+    background-color: #57b846;
+    border-radius: 25px;
+    padding: 10px 0;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.5;
+    border: none;
+    width: 250px;
+    margin: 15px 0px;
+}
+
+.btn:hover {
+    transition: 0.4s;
+    cursor: pointer;
+    background: #000000
+}
+
+.textarea {
+    margin-top: 15px;
+    width: 600px;
+}
+
+.error {
+    color: red;
+}
+
+.error__authorization {
+    color: red;
+}
+
+.NoEmpty {
+    color: green;
+}
+.password {
+    position: relative;
+}
+.eye {
+    position: absolute;
+    top: 28px;
+    right: 6px;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}

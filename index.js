@@ -10,7 +10,12 @@ const port = process.env.PORT
 app.use(cors())
 app.use(express.json())
 app.use('/static', express.static(path.resolve(__dirname, 'static')));
-app.use(require('./routes'))
+app.use(express.static(path.resolve(__dirname, "client", "build")));
+app.use(require("./routes"));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+});
 
 
 const connected = async () => {

@@ -1,0 +1,182 @@
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.container {
+  max-width: 1920px;
+  margin: 0 auto;
+}
+
+.header {
+  position: relative;
+
+  width: 100%;
+  height: 100vh;
+
+  /* background-color: #556983; */
+  background-image: url("../../assets/deed.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.signin {
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",sans-serif;
+  margin: 0;
+  outline: none;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  touch-action: manipulation;
+  transition: box-shadow .2s,-ms-transform .1s,-webkit-transform .1s,transform .1s;
+  user-select: none;
+  -webkit-user-select: none;
+  width: 150px;
+  height: 32px;
+  position: absolute;
+  left: -350px;
+  border: 1px solid;
+  border-radius: 8px;
+  line-height: 1.5;
+  background-color: #303030b7;
+  color: white;
+  font-size: 17px;
+  
+}
+
+.signin a {
+  padding: 10px 46px;
+}
+
+.signin:focus-visible {
+  box-shadow: #222222 0 0 0 2px, rgba(255, 255, 255, 0.8) 0 0 0 4px;
+  transition: box-shadow .2s;
+}
+
+.signin:active {
+  background-color: white;
+  border-color: white;
+  transform: scale(.96);
+  color: #000000;
+}
+
+.header__main {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.header__row {
+  position: relative;
+  width: 680px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.header__row {
+  margin-top: 30px;
+  font-size: 20px;
+  color: #ffffff;
+}
+
+.header__title {
+  width: 600px;
+  margin-top: 90px;
+  line-height: 78px;
+}
+
+.header__title {
+  color: #fff;
+  font-size: 35px;
+  margin-left: 60px;
+}
+
+.button_23 {
+  background-color: #303030;
+  border: 1px solid #222222;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",sans-serif;
+  font-size: 22px;
+  line-height: 20px;
+  margin: 0;
+  outline: none;
+  padding: 13px 23px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  touch-action: manipulation;
+  transition: box-shadow .2s,-ms-transform .1s,-webkit-transform .1s,transform .1s;
+  user-select: none;
+  -webkit-user-select: none;
+  width: 350px;
+  height: 65px;
+}
+
+.button_23:focus-visible {
+  box-shadow: #222222 0 0 0 2px, rgba(255, 255, 255, 0.8) 0 0 0 4px;
+  transition: box-shadow .2s;
+}
+
+.button_23:active {
+  background-color: #30303093;
+  border-color: #000000;
+  transform: scale(.96);
+}
+
+.loading {
+  margin: auto;
+  /* Here we declare our inline animation */
+  animation: rotate 3s linear infinite;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin-bottom: 30px;
+  margin-right: 50px;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* .headerAnimation {
+  background: linear-gradient(90deg, #000, #fff, #000);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-repeat: no-repeat;
+  background-size: 80%;
+  animation: shine 5s linear infinite;
+}
+
+@keyframes shine {
+  0% {
+    background-position-x: -500%;
+  }
+  100% {
+    background-position-x: 500%;
+  }
+} */
+
+.headerAnimation {
+  background-image: url(https://media.giphy.com/media/LSthRvbIZidCJNYD2k/giphy.gif);
+	background-size: cover;
+	color: transparent;
+	background-clip: text;
+  font-size: 92px;
+  margin-bottom: 10px;
+}
